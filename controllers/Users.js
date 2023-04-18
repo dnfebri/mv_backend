@@ -1,4 +1,3 @@
-import { Op } from "sequelize";
 import { responseJson } from "../helper/Respont.js";
 import User from "../models/UserModel.js";
 import bcrypt from "bcrypt";

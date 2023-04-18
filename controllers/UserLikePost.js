@@ -2,9 +2,6 @@ import { Op } from "sequelize";
 import { responseJson } from "../helper/Respont.js";
 import UserLikePost from "../models/UserLikePostModel.js";
 import Post from "../models/PostModel.js";
-import { uploadPost } from "../helper/UploadImage.js";
-import Users from "../models/UserModel.js";
-import fs from "fs"
 
 export const like = async (req, res) => {
   const post = await Post.findOne({
@@ -27,8 +24,12 @@ export const like = async (req, res) => {
   });
   if (userLike && userLike.like === 1) return res.status(400).json(responseJson(false, 'Fail Like'));
   try {
+    let like = post.likes;
+    if (like < 0) {
+      like = 0;
+    }
     await Post.update({
-      likes: post.likes+1
+      likes: like+1
     }, {
       where: {
         id: post.id
