@@ -87,7 +87,7 @@ export const getPostId = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json(responseJson(true, "Successfully Update Post", post));
+    res.status(200).json(responseJson(true, "Successfully Get Post", post));
   } catch (error) {
     res.status(500).json(responseJson(false, error));
   }
