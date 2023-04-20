@@ -3,6 +3,7 @@ import { responseJson } from "../helper/Respont.js";
 import Post from "../models/PostModel.js";
 import { uploadPost } from "../helper/UploadImage.js";
 import Users from "../models/UserModel.js";
+import UserLikePostModel from "../models/UserLikePostModel.js";
 import fs from "fs";
 
 export const getAllPost = async (req, res) => {
@@ -43,10 +44,20 @@ export const getAllPost = async (req, res) => {
           },
         ],
       },
-      include: {
-        model: Users,
-        attributes: ["name", "username", "email", "photo"],
-      },
+      include: [
+        {
+          model: Users,
+          attributes: ["name", "username", "email", "photo"],
+        },
+        {
+          model: UserLikePostModel,
+          attributes: ["userId", "postId", "like"],
+          include: {
+            model: Users,
+            attributes: ["username"],
+          },
+        },
+      ],
       offset: offset,
       limit: limit,
       order: [["id", "DESC"]],
