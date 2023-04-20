@@ -150,10 +150,20 @@ export const getPostByUserId = async (req, res) => {
         ],
         userId: req.params.id,
       },
-      include: {
-        model: Users,
-        attributes: ["name", "username", "email", "photo"],
-      },
+      include: [
+        {
+          model: Users,
+          attributes: ["name", "username", "email", "photo"],
+        },
+        {
+          model: UserLikePostModel,
+          attributes: ["userId", "postId", "like"],
+          include: {
+            model: Users,
+            attributes: ["username"],
+          },
+        },
+      ],
       offset: offset,
       limit: limit,
       order: [["id", "DESC"]],

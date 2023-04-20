@@ -11,6 +11,7 @@ export const getUser = async (req, res) => {
   const user = await User.findOne({
     attributes: [
       "uuid",
+      "id",
       "name",
       "username",
       "email",
