@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import FileUpload from "express-fileupload";
+import bodyParser from "body-parser";
 
 import indexRoute from "./routes/index.js";
 
@@ -29,6 +30,8 @@ dotenv.config();
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 app.use(FileUpload());
