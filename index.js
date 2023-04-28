@@ -13,7 +13,7 @@ import indexRoute from "./routes/index.js";
 
 // // ## Generate database tables
 import db from "./config/Database.js";
-const runDb = async() => {
+const runDb = async () => {
   try {
     await db.authenticate();
     console.log("databases Connected...");
@@ -22,18 +22,18 @@ const runDb = async() => {
   } catch (error) {
     console.error(error.parent);
   }
-}
+};
 runDb();
 
 dotenv.config();
 
 const app = express();
 
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(cors());
-app.use(FileUpload())
+app.use(FileUpload());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(indexRoute);
 
 app.listen(process.env.APP_PORT, () => {
