@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon index",
     "prod": "node index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rebuild": "npm rebuild bcrypt --build-from-source"
   },
   "keywords": [],
   "author": "",
