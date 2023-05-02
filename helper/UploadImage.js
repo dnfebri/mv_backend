@@ -9,7 +9,7 @@ const responseUpload = (status, message, name = null) => {
   };
 };
 
-module.exports = uploadImage = (files, name) => {
+exports.uploadImage = (files, name) => {
   if (files === null || files.photo === null)
     return responseUpload(false, "File no upload");
   const image = files.photo;
@@ -29,7 +29,7 @@ module.exports = uploadImage = (files, name) => {
   return responseUpload(true, "Successfully", `/images/${filenane}`);
 };
 
-module.exports = uploadPost = (files, name) => {
+exports.uploadPost = (files, name) => {
   if (files === null || files.image === null)
     return responseUpload(false, "Image not upload");
   const image = files.image;
