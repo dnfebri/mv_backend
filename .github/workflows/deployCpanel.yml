@@ -2,7 +2,7 @@ name: cPanel Deploy Action
 on:
   push:
     branches:
-    - main
+    - prod
 jobs:
   web-deploy:
     name: 🎉 Deploy
