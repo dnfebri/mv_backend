@@ -75,6 +75,7 @@ exports.Register = async (req, res) => {
       return res
         .status(422)
         .json(responseJson(uploadPhoto.status, uploadPhoto.message));
+    photo = uploadPhoto.name;
   }
   try {
     const salt = bcrypt.genSaltSync();
