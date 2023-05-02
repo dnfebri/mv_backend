@@ -16,7 +16,7 @@ exports.uploadImage = (files, name) => {
   const imageSize = image.data.length;
   const ext = path.extname(image.name);
   const filenane = name + ext;
-  const allowedType = [".png", ".jpg", ".jpeg"];
+  const allowedType = [".png", ".jpg", ".jpeg", "webp"];
   if (!allowedType.includes(ext.toLowerCase())) {
     return responseUpload(false, "invalid Image");
   }
@@ -36,7 +36,7 @@ exports.uploadPost = (files, name) => {
   const imageSize = image.data.length;
   const ext = path.extname(image.name);
   const filenane = name + ext;
-  const allowedType = [".png", ".jpg", ".jpeg"];
+  const allowedType = [".png", ".jpg", ".jpeg", "webp"];
   if (!allowedType.includes(ext.toLowerCase())) {
     return responseUpload(false, "invalid Image");
   }
