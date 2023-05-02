@@ -1,11 +1,11 @@
-import User from "../models/UserModel.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import { responseJson } from "../helper/Respont.js";
-import { Op } from "sequelize";
-import { uploadImage } from "../helper/UploadImage.js";
+var User = require("../models/UserModel.js");
+var bcrypt = require("bcrypt");
+var jwt = require("jsonwebtoken");
+var { responseJson } = require("../helper/Respont.js");
+var { Op } = require("sequelize");
+var { uploadImage } = require("../helper/UploadImage.js");
 
-export const Login = async (req, res) => {
+exports.Login = async (req, res) => {
   const { username, email, password } = req.body;
   if (!username && !email) {
     return res
@@ -38,10 +38,12 @@ export const Login = async (req, res) => {
     return res
       .status(200)
       .json(responseJson(true, "Successfuly Login", { token }));
-  } catch (error) {}
+  } catch (error) {
+    // return res.status(400).json({ error });
+  }
 };
 
-export const Register = async (req, res) => {
+exports.Register = async (req, res) => {
   const { name, username, email, password, confPassword } = req.body;
   if (!name || !username || !email || !password || !confPassword) {
     return res
@@ -73,6 +75,7 @@ export const Register = async (req, res) => {
       return res
         .status(422)
         .json(responseJson(uploadPhoto.status, uploadPhoto.message));
+    photo = uploadPhoto.name;
   }
   try {
     const salt = bcrypt.genSaltSync();
@@ -90,7 +93,7 @@ export const Register = async (req, res) => {
   }
 };
 
-export const Me = async (req, res) => {
+exports.Me = async (req, res) => {
   if (!req.uuid) {
     //wrong UUID
     return res.status(401).json(responseJson(false, "wrong UUID"));
@@ -115,6 +118,6 @@ export const Me = async (req, res) => {
     .json(responseJson(true, "Successfully Get User", user));
 };
 
-export const logOut = async (req, res) => {
+exports.logOut = async (req, res) => {
   res.status(200).json(responseJson(true, "Logout Success"));
 };

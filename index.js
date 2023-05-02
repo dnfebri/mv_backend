@@ -1,11 +1,11 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
-import FileUpload from "express-fileupload";
-import bodyParser from "body-parser";
+var express = require("express");
+var cors = require("cors");
+var dotenv = require("dotenv");
+var cookieParser = require("cookie-parser");
+var FileUpload = require("express-fileupload");
+var bodyParser = require("body-parser");
 
-import indexRoute from "./routes/index.js";
+var indexRoute = require("./routes/index.js");
 
 // const sessionStore = SequelizeStore(session.Store);
 // const store = new sessionStore({
@@ -13,7 +13,7 @@ import indexRoute from "./routes/index.js";
 // })
 
 // // ## Generate database tables
-import db from "./config/Database.js";
+var db = require("./config/Database.js");
 const runDb = async () => {
   try {
     await db.authenticate();

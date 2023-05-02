@@ -1,15 +1,14 @@
-import express from "express";
-import {
+var express = require("express");
+var {
   getUser,
   updateUser,
   changePassword,
-} from "../controllers/Users.js";
-import { verifyToken } from "../middleware/Verify.js";
+} = require("../controllers/Users.js");
+var { verifyToken } = require("../middleware/Verify.js");
+var router = express.Router();
 
-const router = express.Router();
+router.get("/", verifyToken, getUser);
+router.put("/", verifyToken, updateUser);
+router.put("/change-password", verifyToken, changePassword);
 
-router.get('/', verifyToken, getUser);
-router.put('/', verifyToken, updateUser);
-router.put('/change-password', verifyToken, changePassword);
-
-export default router;
+module.exports = router;

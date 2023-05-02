@@ -1,12 +1,12 @@
-import express from "express";
-import {Login, Register, logOut, Me} from "../controllers/Auth.js";
-import { verifyToken } from "../middleware/Verify.js";
+var express = require("express");
+var { Login, Register, logOut, Me } = require("../controllers/Auth.js");
+var { verifyToken } = require("../middleware/Verify.js");
 
-const router = express.Router();
+var router = express.Router();
 
 // router.get('/me', verifySession, Me);
-router.post('/login', Login);
-router.post('/register', Register);
-router.post('/logout', verifyToken, logOut);
+router.post("/login", Login);
+router.post("/register", Register);
+router.post("/logout", verifyToken, logOut);
 
-export default router;
+module.exports = router;

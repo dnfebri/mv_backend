@@ -1,12 +1,12 @@
-import { Op } from "sequelize";
-import { responseJson } from "../helper/Respont.js";
-import Post from "../models/PostModel.js";
-import { uploadPost } from "../helper/UploadImage.js";
-import Users from "../models/UserModel.js";
-import UserLikePostModel from "../models/UserLikePostModel.js";
-import fs from "fs";
+var { Op } = require("sequelize");
+var { responseJson } = require("../helper/Respont.js");
+var Post = require("../models/PostModel.js");
+var { uploadPost } = require("../helper/UploadImage.js");
+var Users = require("../models/UserModel.js");
+var UserLikePostModel = require("../models/UserLikePostModel.js");
+var fs = require("fs");
 
-export const getAllPost = async (req, res) => {
+exports.getAllPost = async (req, res) => {
   const page = parseInt(req.query.page) || 0;
   const limit = parseInt(req.query.limit) || 10;
   const search = req.query.search || "";
@@ -78,7 +78,7 @@ export const getAllPost = async (req, res) => {
   }
 };
 
-export const getPostId = async (req, res) => {
+exports.getPostId = async (req, res) => {
   try {
     const post = await Post.findOne({
       attributes: [
@@ -104,7 +104,7 @@ export const getPostId = async (req, res) => {
   }
 };
 
-export const getPostByUserId = async (req, res) => {
+exports.getPostByUserId = async (req, res) => {
   const user = await Users.findOne({
     where: {
       id: req.params.id,
@@ -184,7 +184,7 @@ export const getPostByUserId = async (req, res) => {
   }
 };
 
-export const createPost = async (req, res) => {
+exports.createPost = async (req, res) => {
   const { tags, caption } = req.body;
   if (!tags || !caption) {
     return res
@@ -226,7 +226,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-export const updatePost = async (req, res) => {
+exports.updatePost = async (req, res) => {
   const post = await Post.findOne({
     where: {
       id: req.params.id,
@@ -286,7 +286,7 @@ export const updatePost = async (req, res) => {
   }
 };
 
-export const deletePost = async (req, res) => {
+exports.deletePost = async (req, res) => {
   const post = await Post.findOne({
     where: {
       id: req.params.id,

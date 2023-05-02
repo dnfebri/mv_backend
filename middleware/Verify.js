@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
-import { responseJson } from "../helper/Respont.js";
+var jwt = require("jsonwebtoken");
+var { responseJson } = require("../helper/Respont.js");
 
-export const verifyToken = (req, res, next) => {
+exports.verifyToken = (req, res, next) => {
   if (!req.header("authorization"))
     return res
       .status(401)
