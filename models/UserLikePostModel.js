@@ -1,30 +1,34 @@
-import { Sequelize } from "sequelize";
-import db from "../config/Database.js";
-import Users from "./UserModel.js";
-import Post from "./PostModel.js";
+var { Sequelize } = require("sequelize");
+var db = require("../config/Database.js");
+var Users = require("./UserModel.js");
+var Post = require("./PostModel.js");
 
 const { DataTypes } = Sequelize;
 
-const UserLikePost = db.define('user_like_post', {
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false
+const UserLikePost = db.define(
+  "user_like_post",
+  {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    postId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    like: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
-  postId: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  like: {
-    type: DataTypes.INTEGER,
-    allowNull: false
+  {
+    freezeTableName: true,
   }
-}, {
-  freezeTableName: true
-});
+);
 
 Users.hasMany(UserLikePost);
 Post.hasMany(UserLikePost);
-UserLikePost.belongsTo(Users, {foreignKey: 'userId'});
-UserLikePost.belongsTo(Post, {foreignKey: 'postId'});
+UserLikePost.belongsTo(Users, { foreignKey: "userId" });
+UserLikePost.belongsTo(Post, { foreignKey: "postId" });
 
-export default UserLikePost;
+module.exports = UserLikePost;

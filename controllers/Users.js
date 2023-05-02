@@ -1,9 +1,9 @@
-import { responseJson } from "../helper/Respont.js";
-import User from "../models/UserModel.js";
-import bcrypt from "bcrypt";
-import { uploadImage } from "../helper/UploadImage.js";
+var { responseJson } = require("../helper/Respont.js");
+var User = require("../models/UserModel.js");
+var bcrypt = require("bcrypt");
+var { uploadImage } = require("../helper/UploadImage.js");
 
-export const getUser = async (req, res) => {
+exports.getUser = async (req, res) => {
   if (!req.uuid) {
     //wrong UUID
     return res.status(401).json(responseJson(false, "wrong UUID"));
@@ -29,7 +29,7 @@ export const getUser = async (req, res) => {
     .json(responseJson(true, "Successfully Get User", user));
 };
 
-export const updateUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
   const { name, username, email } = req.body;
   const user = await User.findOne({
     attributes: [
@@ -83,7 +83,7 @@ export const updateUser = async (req, res) => {
   }
 };
 
-export const changePassword = async (req, res) => {
+exports.changePassword = async (req, res) => {
   const { oldPassword, newPassword, confrimNewPassword } = req.body;
   const user = await User.findOne({
     where: {

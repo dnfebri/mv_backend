@@ -1,16 +1,16 @@
-import express from "express";
-import AuthRoute from "./AuthRoute.js";
-import UserRoute from "./UserRoute.js";
-import PostRoute from "./PostRoute.js";
+var express = require("express");
+var AuthRoute = require("./AuthRoute.js");
+var UserRoute = require("./UserRoute.js");
+var PostRoute = require("./PostRoute.js");
 
-const router = express.Router();
+var router = express.Router();
 
-router.get('/', (reg, res) => {
-  res.json({massage: "Server run...!"});
+router.get("/", (req, res) => {
+  res.json({ massage: "Server run...!" });
 });
 
-router.use('/auth', AuthRoute);
-router.use('/user', UserRoute);
-router.use('/post', PostRoute);
+router.use("/auth", AuthRoute);
+router.use("/user", UserRoute);
+router.use("/post", PostRoute);
 
-export default router;
+module.exports = router;
